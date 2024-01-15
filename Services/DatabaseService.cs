@@ -32,5 +32,22 @@ namespace ajgre_technical_interview.Services
             SanctionedEntities.Add(sanctionedEntity);
             return await Task.FromResult(sanctionedEntity);
         }
+
+        private int _sanctionedEntitiesCount;
+
+        public Task<int> GetSanctionedEntitiesCountAsync()
+        {
+            if (_sanctionedEntitiesCount == 0)
+                _sanctionedEntitiesCount = SanctionedEntities.Count(c => !c.Accepted);
+
+            return Task.FromResult(_sanctionedEntitiesCount);
+        }
+
+        public async Task UpdateSanctionedEntitiesCountAsync(int count)
+        {
+            _sanctionedEntitiesCount = count;
+
+            await Task.Delay(0);
+        }
     }
 }
