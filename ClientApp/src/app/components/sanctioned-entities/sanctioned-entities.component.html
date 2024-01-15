@@ -1,21 +1,31 @@
-<h1 id="tableLabel">Sanctioned Entities</h1>
+<div class="container">
+	<div class="row align-items-center">
+		<div class="col">
+			<h1 id="tableLabel">Sanctioned Entities</h1>
+		</div>
+		<div class="col">
+			<!-- <button class="btn btn-primary float-end">Add Entity</button> -->
+			<sanctioned-entity-modal></sanctioned-entity-modal>
+		</div>
+	</div>
+</div>
 
 <p *ngIf="!entities"><em>Loading...</em></p>
 
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="entities">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Domicile</th>
-        <th>Status</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let entity of entities">
-        <td>{{ entity.name }}</td>
-        <td>{{ entity.domicile }}</td>
-        <td *ngIf="entity.accepted" class="text-success">Accepted</td>
-        <td *ngIf="!entity.accepted" class="text-danger">Rejected</td>
-    </tr>
-    </tbody>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Domicile</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let entity of entities">
+			<td>{{ entity.name }}</td>
+			<td>{{ entity.domicile }}</td>
+			<td *ngIf="entity.accepted" class="text-success">Accepted</td>
+			<td *ngIf="!entity.accepted" class="text-danger">Rejected</td>
+		</tr>
+	</tbody>
 </table>
