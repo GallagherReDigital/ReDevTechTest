@@ -4,7 +4,7 @@ namespace ajgre_technical_interview.Services
 {
     public interface IDatabaseService
     {
-        Task<IList<SanctionedEntity>> GetSanctionedEntitiesAsync();
+        Task<IList<SanctionedEntity>> GetSanctionedEntitiesAsync(Func<SanctionedEntity, bool>? filter = null);
 
         Task<SanctionedEntity> GetSanctionedEntityByIdAsync(Guid id);
 
