@@ -9,8 +9,8 @@ import { SanctionedEntitiesService } from '../../services/sanctioned-entities.se
 export class JumbotronCounterComponent {
   public counterCurrentCount: number = 0;
 
-  constructor(private entitiesService: SanctionedEntitiesService)
-  {
-    entitiesService.getSanctionedEntitiesCount().subscribe(count => this.counterCurrentCount = count);
+  constructor(private entitiesService: SanctionedEntitiesService) {
+    this.entitiesService.getSanctionedEntitiesCount()
+      .subscribe(count => this.counterCurrentCount = count);
   }
 }
