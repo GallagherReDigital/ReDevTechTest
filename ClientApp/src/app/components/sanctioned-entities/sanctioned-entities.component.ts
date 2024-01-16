@@ -10,8 +10,12 @@ export class SanctionedEntitiesComponent {
   public entities: SanctionedEntity[] = [];
 
   constructor(private entitiesService: SanctionedEntitiesService) {
-    entitiesService.getSanctionedEntities().subscribe(entities => {
+    this.entitiesService.getSanctionedEntities().subscribe(entities => {
       this.entities = entities;
     });
+  }
+
+  onEntityAdded(entity: SanctionedEntity) {
+    this.entities.push(entity);
   }
 }

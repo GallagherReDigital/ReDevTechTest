@@ -12,9 +12,11 @@ namespace ajgre_technical_interview.Services
             new SanctionedEntity { Name = "Evil Plc", Domicile = "Venus", Accepted = false }
         };
 
-        public async Task<IList<SanctionedEntity>> GetSanctionedEntitiesAsync()
+        public async Task<IList<SanctionedEntity>> GetSanctionedEntitiesAsync(Func<SanctionedEntity, bool>? filter = null)
         {
-            var entities = SanctionedEntities
+            var query = filter is not null ? SanctionedEntities.Where(filter) : SanctionedEntities;
+
+            var entities = query
                 .OrderBy(e => e.Name)
                 .ThenBy(e => e.Domicile)
                 .ToList();
@@ -31,6 +33,23 @@ namespace ajgre_technical_interview.Services
         {
             SanctionedEntities.Add(sanctionedEntity);
             return await Task.FromResult(sanctionedEntity);
+        }
+
+        private int _sanctionedEntitiesCount;
+
+        public Task<int> GetSanctionedEntitiesCountAsync()
+        {
+            if (_sanctionedEntitiesCount == 0)
+                _sanctionedEntitiesCount = SanctionedEntities.Count(c => !c.Accepted);
+
+            return Task.FromResult(_sanctionedEntitiesCount);
+        }
+
+        public async Task UpdateSanctionedEntitiesCountAsync(int count)
+        {
+            _sanctionedEntitiesCount = count;
+
+            await Task.Delay(0);
         }
     }
 }
