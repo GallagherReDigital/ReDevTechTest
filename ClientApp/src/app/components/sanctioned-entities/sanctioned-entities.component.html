@@ -5,7 +5,7 @@
 		</div>
 		<div class="col">
 			<!-- <button class="btn btn-primary float-end">Add Entity</button> -->
-			<sanctioned-entity-modal></sanctioned-entity-modal>
+			<sanctioned-entity-modal [entities]="entities" (entityAdded)="onEntityAdded($event)"></sanctioned-entity-modal>
 		</div>
 	</div>
 </div>

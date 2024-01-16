@@ -9,34 +9,12 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancel"></button>
 			</div>
 			<div class="modal-body">
-				<!-- <form>
-					<div class="mb-3 row">
-						<label for="entityName" class="col-sm-2 col-form-label">Name</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="entityName" [(ngModel)]="entity.name" />
-						</div>
-					</div>
-					<div class="mb-3 row">
-						<label for="domicile" class="col-sm-2 col-form-label">Domicile</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="domicile" [(ngModel)]="entity.domicile" />
-						</div>
-					</div>
-					<div class="mb-3 row align-items-center">
-						<label for="entityStatus" class="col-sm-2 col-form-label">Status</label>
-						<div class="col-sm-10">
-							<div class="form-check form-switch">
-								<input class="form-check-input" type="checkbox" role="switch" id="entityStatus">
-								<label class="form-check-label" for="entityStatus">Rejected</label>
-							</div>
-						</div>
-					</div>
-				</form> -->
-				<sanctioned-entity-editor></sanctioned-entity-editor>
+				<sanctioned-entity-editor (addEntityRequest)="addEntity($event)" (formStatusChanged)="onFormStatusChange($event)"></sanctioned-entity-editor>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-primary" disabled>Add Entity</button>
+				<button type="button" class="btn btn-primary" (click)="submitForm()" [disabled]="!isValidForm">Add</button>
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="submitForm()" [disabled]="!isValidForm">Add &amp; Close</button>
 			</div>
 		</div>
 	</div>
